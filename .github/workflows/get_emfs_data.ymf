@@ -1,31 +1,29 @@
-name: Send email finding notifications
+name: Atualizar dados EMFS manualmente
 
 on:
-  workflow_dispatch:  # Permite execução manual via botão
-
-permissions:
-  contents: write  # Permissão para fazer push
+  workflow_dispatch:
 
 jobs:
-  update:
+  run-script:
     runs-on: ubuntu-latest
- 
+
     steps:
-      - name: Checkout código
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Importante para operações git
- 
-      - name: Configurar Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
- 
-      - name: Instalar dependências
-        run: pip install -r requirements.txt
- 
-      - name: Baixar dados do Yahoo Finance
-        run: python get_emfs_data.py
+    - name: Clonar repositório
+      uses: actions/checkout@v3
+
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Instalar dependências
+      run: |
+        python -m pip install --upgrade pip
+        pip install pandas numpy requests pyjstat
+
+    - name: Rodar script de extração
+      run: |
+        python -c "from get_data import get_emfs_data; from config import bank_pt_series_dict; get_emfs_data(bank_pt_series_dict)"
  
       - name: Commit e push dos dados
         env:

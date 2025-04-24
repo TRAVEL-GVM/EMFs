@@ -57,6 +57,3 @@ def get_emfs_data(dict_indicator_keys):
     os.makedirs("Data", exist_ok=True)
     df_final.to_csv("Data/emfs.csv")
     print("Dados atualizados com sucesso!")
-
-if __name__ == "__main__":
-    get_emfs_data(bank_pt_series_dict)
