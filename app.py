@@ -7,6 +7,5 @@ st.write(
     "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
 )
 
-
-#df = get_emfs_data(bank_pt_series_dict)
-#st.dataframe(df)
+df = pd.read_csv('Data/emfs.csv')
+st.dataframe(df)
