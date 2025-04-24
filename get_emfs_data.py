@@ -54,7 +54,6 @@ def get_emfs_data(dict_indicator_keys):
         
         df_final = df_final.merge(df_extracted, on='Date', how='left')
 
-    os.makedirs("Data", exist_ok=True)
     df_final.to_csv("Data/emfs.csv")
     print("Dados atualizados com sucesso!")
 
