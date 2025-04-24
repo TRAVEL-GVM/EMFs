@@ -23,7 +23,7 @@ jobs:
 
     - name: Rodar script de extração
       run: |
-        python -c "from get_data import get_emfs_data; from config import bank_pt_series_dict; get_emfs_data(bank_pt_series_dict)"
+        python get_emfs_data.py
  
     - name: Commit e push dos dados
       env:
