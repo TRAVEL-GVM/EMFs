@@ -25,12 +25,12 @@ jobs:
       run: |
         python -c "from get_data import get_emfs_data; from config import bank_pt_series_dict; get_emfs_data(bank_pt_series_dict)"
  
-      - name: Commit e push dos dados
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@users.noreply.github.com"
-          git add Data/emfs.csv
-          git diff --cached --quiet || git commit -m "Atualização automática dos dados - $(date)"
-          git push
+    - name: Commit e push dos dados
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config user.name "github-actions"
+        git config user.email "github-actions@users.noreply.github.com"
+        git add Data/emfs.csv
+        git diff --cached --quiet || git commit -m "Atualização automática dos dados - $(date)"
+        git push
